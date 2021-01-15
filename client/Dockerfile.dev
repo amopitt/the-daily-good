@@ -1,0 +1,26 @@
+FROM node:12
+
+# Environment variables
+ENV REACT_CLIENT_PORT=3000
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY . ./client 
+
+WORKDIR /usr/src/app/client
+
+RUN npm install --silent
+
+# If you are building your code for production
+# RUN npm ci --only=production 
+
+# Build the typescript / client
+RUN npm run build
+
+EXPOSE ${REACT_CLIENT_PORT} 
+
+CMD [ "npm", "start" ]

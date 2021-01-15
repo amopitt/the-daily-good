@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  client:
+    container_name: thedailygood-frontend
+    image: the-daily-good/app
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    command: npm run start
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./client:/usr/src/app/client
+      - /usr/src/app/client/node_modules
+  server:
+    container_name: thedailygood-api
+    image: the-daily-good/api
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    command: npm run watch
+    environment:
+      - NODE_ENV=development
+    ports:
+      - '8080:8080'
+      - '9230:9230'
+    volumes:
+      - ./server:/usr/src/app/server
+      - /usr/src/app/server/node_modules
