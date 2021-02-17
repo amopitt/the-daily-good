@@ -1,3 +1,23 @@
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  padding-top: 50px;
+  margin: 5px;
+}
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 0px;
+  }
+}
+
+input {
+  padding: 5px;
+}
+
+.entry-container {
+  margin: 5px;
+}
+
 .App {
   text-align: center;
 }

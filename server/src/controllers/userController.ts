@@ -16,6 +16,7 @@ import {
   Delete,
   Patch,
   Tags,
+  Request,
 } from 'tsoa';
 
 interface UnauthorizedError {
@@ -40,7 +41,8 @@ export class UserController extends Controller {
     first_name: 'joe',
     last_name: 'someone',
   })
-  public async getUsers(): Promise<User[]> {
+  public async getUsers(@Request() request: any): Promise<User[]> {
+    console.log('dta', request.jwt.claims.uid);
     return new UserService().get();
   }
 

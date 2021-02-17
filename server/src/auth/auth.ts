@@ -39,9 +39,11 @@ export const authenticationRequired = (req: any, res: Response, next: NextFuncti
     });
 };
 
-export const expressAuthentication = (req: Request, securityName: string, scopes?: string[]) => {
+export const expressAuthentication = (req: any, securityName: string, scopes?: string[]) => {
   const authHeader = req.headers.authorization || '';
   const match = authHeader.match(/Bearer (.+)/);
+
+  console.log(req.userinfo);
 
   if (!match) {
     return Promise.reject(new UnauthorizedError('!!No token provided'));
@@ -52,6 +54,8 @@ export const expressAuthentication = (req: Request, securityName: string, scopes
   return oktaJwtVerifier
     .verifyAccessToken(accessToken, audience)
     .then((jwt: any) => {
+      console.log('made it', jwt);
+      req.jwt = jwt;
       Promise.resolve(jwt);
     })
     .catch((err: any) => {

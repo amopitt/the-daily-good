@@ -18,6 +18,7 @@ import logo from '../logo.svg';
 import { oidc } from '../config';
 
 const Login = () => {
+  console.log('am i even hit');
   const { oktaAuth } = useOktaAuth();
   const widgetRef = useRef();
 
@@ -49,6 +50,23 @@ const Login = () => {
         issuer,
         scopes,
       },
+      registration: {
+        parseSchema: function (schema: any, onSuccess: any, onFailure: any) {
+          // handle parseSchema callback
+          onSuccess(schema);
+        },
+        preSubmit: function (postData: any, onSuccess: any, onFailure: any) {
+          // handle preSubmit callback
+          onSuccess(postData);
+        },
+        postSubmit: function (response: any, onSuccess: any, onFailure: any) {
+          // handle postsubmit callback
+          onSuccess(response);
+        },
+      },
+      features: {
+        registration: true,
+      },
     });
 
     widget
@@ -69,7 +87,6 @@ const Login = () => {
 
   return (
     <div>
-      yea
       <div ref={widgetRef as any} />
     </div>
   );

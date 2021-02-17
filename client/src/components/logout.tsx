@@ -1,4 +1,7 @@
 import { useOktaAuth } from '@okta/okta-react';
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import { nav } from '..';
 
 // Basic component with logout button
 export const Logout = () => {
@@ -8,7 +11,8 @@ export const Logout = () => {
     console.log(oktaAuth);
     oktaAuth.tokenManager.clear();
     oktaAuth.signOut();
+    nav('/');
   };
 
-  return <button onClick={logout}>Logout</button>;
+  return <Button onClick={logout}>Logout</Button>;
 };

@@ -18,10 +18,19 @@ export const Users = () => {
   useEffect(() => {
     if (authState.isAuthenticated) {
       const accessToken = oktaAuth.getAccessToken();
+
       console.log('axxess', accessToken);
     } else {
       console.log('isnt authenticated');
     }
+
+    const getUser = async () => {
+      const user = await oktaAuth.getUser();
+
+      console.log('this is the user', user);
+    };
+
+    getUser();
   });
 
   useEffect(() => {

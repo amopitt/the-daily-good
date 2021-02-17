@@ -1,0 +1,20 @@
+.royal-rumble {
+  margin-top: -50px;
+  span {
+    font-weight: bold;
+  }
+
+  .royal-rumble-results {
+    width: 500px;
+
+    .number {
+      width: 50px;
+    }
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+    margin-top: 15px;
+  }
+}

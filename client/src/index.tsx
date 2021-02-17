@@ -1,17 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { store } from './store';
+import createHistory from 'history/createBrowserHistory';
+
+import { createBrowserHistory } from 'history';
+
+const history = createHistory();
+
+export function nav(loc: string) {
+  const history = createBrowserHistory({ forceRefresh: true });
+  history.push(loc);
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Router history={history}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -34,7 +34,7 @@ export class UserService {
       first_name: requestBody.first_name,
       last_name: requestBody.last_name,
     });
-    const response = await UserMongoModel.updateOne({ _id: requestBody._id }, user);
+    const response = await UserMongoModel.updateOne({ _id: requestBody._id }, user, { upsert: true });
     console.log(response);
     return response.ok > 0;
   }
